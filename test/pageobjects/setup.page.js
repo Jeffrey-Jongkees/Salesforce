@@ -15,7 +15,6 @@ class Setup {
         }
     );
     await this.elements.appLauncher().waitForExist();
-    await this.elements.appLauncher().isFocused();
     await this.elements.appLauncher().moveTo();
     await this.elements.appLauncher().waitForDisplayed();
     await this.elements.appLauncher().waitForClickable();
