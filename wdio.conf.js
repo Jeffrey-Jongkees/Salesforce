@@ -63,11 +63,17 @@ export const config = {
     capabilities: [
       {
         browserName: "chrome",
-        maxInstances: 2
+        maxInstances: 2,
+        "goog:chromeOptions": {
+                  args: ['--window-size=1920,1080', '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
+                },
       },
       {
         browserName: "MicrosoftEdge",
-        maxInstances: 2
+        maxInstances: 2,
+        "ms:edgeOptions": {
+                 args: ['--window-size=1920,1080', '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
+                },
       }
     ],
 
