@@ -102,9 +102,9 @@ jobs:
             keep_files: false
             # open Allure-Report via this url: https://Jeffrey-Jongkees.github.io/Salesforce/
      
-      - name: Upload video
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-           name: salesforce_tests
-           path: ./allure-results/_results_/
+      # - name: Upload video
+      #   if: always()
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #      name: salesforce_tests
+      #      path: ./allure-results/_results_/
