@@ -21,7 +21,7 @@ describe("Testing the accounts functionality", () => {
 
 
     //Maximize the browser window for running UI
-    await browser.maximizeWindow();
+    // await browser.maximizeWindow();
     
     
     // Navigate to the website
