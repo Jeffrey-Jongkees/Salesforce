@@ -51,7 +51,7 @@ describe("Testing the accounts functionality", () => {
 
     // Click on the App Launcher
     await Setup.click_AppLauncher();
-
+    await browser.pause(5000);
     // Click on Service
     await Setup.click_Service();
 

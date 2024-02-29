@@ -8,6 +8,7 @@ class Setup {
   async click_AppLauncher() {
 
     await this.elements.appLauncher().waitForExist();
+    await this.elements.appLauncher().moveTo();
     await this.elements.appLauncher().waitForDisplayed();
     await this.elements.appLauncher().waitForClickable();
     await this.elements.appLauncher().moveTo();
