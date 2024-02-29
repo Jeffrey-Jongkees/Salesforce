@@ -2,6 +2,8 @@ import fs from 'fs-extra'
 // import { exec } from 'child_process';
 // import allure from 'allure-commandline'
 
+const browserName = process.env.BROWSER || 'chrome';
+
 export const config = {
     //
     // ====================
@@ -57,21 +59,23 @@ export const config = {
     // https://saucelabs.com/platform/platform-configurator
     //!!!!! ['--window-size=1920,1080', '--headless, --disable-gpu'] !!!!!
     capabilities: [
-        {
-          browserName: "chrome",
-          // "goog:chromeOptions": 
-          // {
-          //   args: ['--window-size=1920,1080','--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
-          // },
-        },
-        // {
-        //   browserName: "MicrosoftEdge",
-        //   // "ms:edgeOptions": 
-        //   // {
-        //   //   args: ['--window-size=1920,1080','--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage']
-        //   // }
-        // }
-      ],
+      {
+        browserName: browserName,
+
+        ...(browserName === 'chrome' ? {
+          "goog:chromeOptions": {
+            args: ['--window-size=1920,1080', '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
+          },
+        } : {}),
+        ...(browserName === 'MicrosoftEdge' ? {
+          "ms:edgeOptions": {
+           args: ['--window-size=1920,1080', '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
+          },
+        } : {}), 
+      }
+      // With the following (chained) commands the tests will be run subsequently in browsers, first Chrome and the Edge
+      // BROWSER=chrome npx wdio wdio.conf.js && BROWSER=MicrosoftEdge npx wdio wdio.conf.js
+    ],
 
     //
     // ===================
