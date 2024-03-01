@@ -1,10 +1,10 @@
-// import fs from 'fs-extra'
+import fs from 'fs-extra'
 // import { exec } from 'child_process';
 import { config as dotenvConfig } from 'dotenv';
 dotenvConfig();
 import allure from 'allure-commandline'
+import video from 'wdio-video-reporter'
 
-const browserName = process.env.BROWSER || 'chrome';
 
 export const config = {
     //
@@ -62,22 +62,39 @@ export const config = {
     //!!!!!! ['--window-size=1920,1080', '--headless, --disable-gpu'] !!!!!!
     capabilities: [
       {
-        browserName: browserName,
-
-        ...(browserName === 'chrome' ? {
-          "goog:chromeOptions": {
+        browserName: "chrome",
+        maxInstances: 2,
+        "goog:chromeOptions": {
             args: ['--window-size=1920,1080', '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
-          },
-        } : {}),
-        ...(browserName === 'MicrosoftEdge' ? {
-          "ms:edgeOptions": {
-           args: ['--window-size=1920,1080', '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
-          },
-        } : {}), 
+       }
+      },
+      {
+        browserName: "MicrosoftEdge",
+        maxInstances: 2,
+        "ms:edgeOptions": {
+            args: ['--window-size=1920,1080', '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
+       }
       }
-      // With the following (chained) commands the tests will be run subsequently in browsers, first Chrome and the Edge
-      // BROWSER=chrome npx wdio wdio.conf.js && BROWSER=MicrosoftEdge npx wdio wdio.conf.js
     ],
+
+    // capabilities: [
+    //   {
+    //     browserName: browserName,
+
+    //     ...(browserName === 'chrome' ? {
+    //       "goog:chromeOptions": {
+    //         args: ['--window-size=1920,1080', '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
+    //       },
+    //     } : {}),
+    //     ...(browserName === 'MicrosoftEdge' ? {
+    //       "ms:edgeOptions": {
+    //        args: ['--window-size=1920,1080', '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
+    //       },
+    //     } : {}), 
+    //   }
+    //   // With the following (chained) commands the tests will be run subsequently in browsers, first Chrome and the Edge
+    //   // BROWSER=chrome npx wdio wdio.conf.js && BROWSER=MicrosoftEdge npx wdio wdio.conf.js
+    // ],
 
     //
     // ===================
@@ -126,7 +143,7 @@ export const config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    // services: [],
+    services: [],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -156,6 +173,12 @@ export const config = {
     //python -m http.server
     //http://localhost:8000
     reporters: ['spec',
+    [video, {
+      saveAllVideos: true,       // If true, also saves videos for successful test cases
+      videoSlowdownMultiplier: 3, // Higher to get slower videos, lower for faster videos [Value 1-100]
+      videoFormat: 'mp4',
+      outputDir: './allure-results/_results_'
+    }],
     ['allure', {
         //allure generate allure-results && allure open  -> generates and opens the allure report
         //allure generate --clean allure-results && allure open  -> empties the report folder prior generating a new one
@@ -187,11 +210,11 @@ export const config = {
      * @param {object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    //   if(fs.existsSync("./allure-results")) {
-    //       fs.rmSync("./allure-results", {recursive: true} );
-    //   }
-    // },
+    onPrepare: function (config, capabilities) {
+      if(fs.existsSync("./allure-results")) {
+          fs.rmSync("./allure-results", {recursive: true} );
+      }
+    },
     /**
      * Gets executed before a worker process is spawned and can be used to initialize specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -220,7 +243,10 @@ export const config = {
      * @param {Array.<String>} specs List of spec file paths that are to be run
      * @param {string} cid worker id (e.g. 0-0)
      */
-    // beforeSession: function (config, capabilities, specs, cid) {
+    // beforeSession: function (config, capabilities, specs) {
+    //   if (capabilities.browserName === 'MicrosoftEdge') {
+    //     return new Promise(resolve => setTimeout(resolve, 5000)); // 5-second delay for Edge
+    //   }
     // },
     /**
      * Gets executed before test execution begins. At this point you can access to all global

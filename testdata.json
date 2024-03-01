@@ -2,7 +2,7 @@
   "loggingIn": {
     "login": {
       "invalidPassword": "InvalidPassword",
-      "invalidEmail": "invalidEmail"
+      "invalidEmail": "invalidEmail@invalid.com"
     },
     "output": {
       "quarterlyPerformance": "Quarterly Performance",

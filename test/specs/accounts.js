@@ -4,15 +4,23 @@ import Overview from "../pageobjects/overview.page.js";
 import Account from "../pageobjects/accounts.page.js";
 import DeleteAccount from "../deleteAccount.js"
 import { fill_In_Combo } from "../functions/functions.js";
+//import { v4 as uuidv4 } from 'uuid';
 import fs from "fs-extra";
 
 let jsonData = "";
 
 describe("Testing the accounts functionality", () => {
+  //let accountName1;
+
   before(async () => {
     jsonData = await fs.readJson("./testdata.json");
+    
+    //const uniqueSuffix = uuidv4();
+    // const browserName = browser.capabilities.browserName;
+    // accountName1 = `${jsonData.accounts.input.account1}_${browserName}}`; //_${uniqueSuffix}
 
-    // Maximize the browser window for running UI
+
+    //Maximize the browser window for running UI
     // await browser.maximizeWindow();
     
     
@@ -28,6 +36,7 @@ describe("Testing the accounts functionality", () => {
   });
 
   it("Creating an account", async () => {
+
 
     // Navigate to the website
     await browser.url("/");
@@ -167,9 +176,16 @@ describe("Testing the accounts functionality", () => {
       jsonData.accounts.input.accountsDescription
     )
 
+
     // Click the Save buton
     await Account.click_SaveButton();
 
+    const similarRecordWarning = await $('[title="Close error dialog"]');
+
+    if(await similarRecordWarning.isDisplayed()) {
+      await similarRecordWarning.click();
+      await Account.click_SaveButton();
+    }
   });
 
 
@@ -177,13 +193,13 @@ describe("Testing the accounts functionality", () => {
 
     // Click on the Home button
     await Overview.click_HomeButton();
-
-    await browser.pause(2000)
     
     // Click on the Actions button
     await Overview.click_AccountsButton();
 
     await Account.deleteExistingAccounts(
-      jsonData.accounts.input.account1 + "_" + browser.capabilities.browserName);
+      jsonData.accounts.input.account1);
+
+
   });
 });
