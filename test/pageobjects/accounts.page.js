@@ -30,9 +30,10 @@ class Account {
     for (const nameAccount of nameAccounts) {
       try {
         let account = await $(`a[title="${nameAccount}"]`);
-        let accountText = await account.getText();
+        //let accountText = await account.getText();
   
-        if (accountText === nameAccount) {
+        if (await account.waitForDisplayed({ timeout: 2000 })) {
+           
           await this.elements.actionsButton().waitForClickable();
           await this.elements.actionsButton().click();
       
