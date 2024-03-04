@@ -1,7 +1,7 @@
-import LogIn from "./pageobjects/login.page.js";
-import Setup from "./pageobjects/setup.page.js";
-import Overview from "./pageobjects/overview.page.js";
-import Account from "./pageobjects/accounts.page.js";
+import LogIn from "../pageobjects/login.page.js";
+import Setup from "../pageobjects/setup.page.js";
+import Overview from "../pageobjects/overview.page.js";
+import Account from "../pageobjects/accounts.page.js";
 import fs from "fs-extra";
 import { config } from 'dotenv';
 config();

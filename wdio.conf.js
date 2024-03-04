@@ -72,7 +72,7 @@ export const config = {
         browserName: "MicrosoftEdge",
         maxInstances: 2,
         "ms:edgeOptions": {
-            args: ['--window-size=1920,1080', '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
+           args: ['--window-size=1920,1080', '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
        }
       }
     ],
@@ -273,11 +273,11 @@ export const config = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    // beforeTest: async function (test, context) {
+    beforeTest: async function (test, context) {
           
-    // //Maximize the browser window
-    // await browser.maximizeWindow();
-    // },
+    //Maximize the browser window
+    //await browser.maximizeWindow();
+    },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)

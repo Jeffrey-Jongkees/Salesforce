@@ -2,7 +2,7 @@ import LogIn from "../pageobjects/login.page.js";
 import Setup from "../pageobjects/setup.page.js";
 import Overview from "../pageobjects/overview.page.js";
 import Account from "../pageobjects/accounts.page.js";
-import DeleteAccount from "../deleteAccount.js"
+import DeleteAccount from "./deleteAccount.js";
 import { fill_In_Combo } from "../functions/functions.js";
 //import { v4 as uuidv4 } from 'uuid';
 import fs from "fs-extra";
@@ -64,7 +64,7 @@ describe("Testing the accounts functionality", () => {
     // Fill in the new account's details
     // Filling in details not inside of a (combobox) dropdown menu
     await Account.fill_In_Accounts_Information(
-      jsonData.accounts.input.account1 + "_" + browser.capabilities.browserName,
+      jsonData.accounts.input.account1,
       jsonData.accounts.input.accountNumber,
       jsonData.accounts.input.accountSite,
       jsonData.accounts.input.annualRevenue,

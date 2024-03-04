@@ -8,8 +8,6 @@ class Setup {
   async click_AppLauncher() {
 
     await this.elements.appLauncher().waitForExist();
-    await this.elements.appLauncher().moveTo();
-    // const hoverEffectElement = await $('')
     await this.elements.appLauncher().waitForDisplayed();
     await this.elements.appLauncher().waitForClickable();
     await this.elements.appLauncher().moveTo();
