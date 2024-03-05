@@ -64,7 +64,7 @@ describe("Testing the accounts functionality", () => {
     // Fill in the new account's details
     // Filling in details not inside of a (combobox) dropdown menu
     await Account.fill_In_Accounts_Information(
-      jsonData.accounts.input.account1,
+      jsonData.accounts.input.account1 + "_" + browser.capabilities.browserName,
       jsonData.accounts.input.accountNumber,
       jsonData.accounts.input.accountSite,
       jsonData.accounts.input.annualRevenue,
