@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import { config as dotenvConfig } from 'dotenv';
 dotenvConfig();
 import allure from 'allure-commandline'
-import video from 'wdio-video-reporter'
+// import video from 'wdio-video-reporter'
 
 
 export const config = {
@@ -173,12 +173,12 @@ export const config = {
     //python -m http.server
     //http://localhost:8000
     reporters: ['spec',
-    [video, {
-      saveAllVideos: true,       // If true, also saves videos for successful test cases
-      videoSlowdownMultiplier: 3, // Higher to get slower videos, lower for faster videos [Value 1-100]
-      videoFormat: 'mp4',
-      outputDir: './allure-results/_results_'
-    }],
+    // [video, {
+    //   saveAllVideos: true,       // If true, also saves videos for successful test cases
+    //   videoSlowdownMultiplier: 3, // Higher to get slower videos, lower for faster videos [Value 1-100]
+    //   videoFormat: 'mp4',
+    //   outputDir: './allure-results/_results_'
+    // }],
     ['allure', {
         //allure generate allure-results && allure open  -> generates and opens the allure report
         //allure generate --clean allure-results && allure open  -> empties the report folder prior generating a new one
