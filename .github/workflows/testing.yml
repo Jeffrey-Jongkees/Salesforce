@@ -80,7 +80,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: allure-results
-          path: allure-results
+          path: ./allure-results #//test added ./ to allure-results path
 
       - name: Generate Allure Report
         run: |
