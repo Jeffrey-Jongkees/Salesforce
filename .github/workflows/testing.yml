@@ -80,7 +80,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: allure-results
-          path: ./allure-results #//test added ./ to allure-results path
+          path: allure-results #//test added ./ to allure-results path
 
       - name: Generate Allure Report
         run: |
@@ -98,6 +98,6 @@ jobs:
         with:
             github_token: ${{ secrets.GITHUB_TOKEN }} 
             publish_dir: ./allure-report
-            publish_branch: allure-report
+            publish_branch: gh-pages
             keep_files: false
             # open Allure-Report via this url: https://Jeffrey-Jongkees.github.io/Salesforce/
