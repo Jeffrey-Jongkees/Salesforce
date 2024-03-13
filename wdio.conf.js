@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import { config as dotenvConfig } from 'dotenv';
 dotenvConfig();
 import allure from 'allure-commandline'
-import video from 'wdio-video-reporter'
+// import video from 'wdio-video-reporter'
 
 
 export const config = {

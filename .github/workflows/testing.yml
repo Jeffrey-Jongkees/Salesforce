@@ -98,6 +98,6 @@ jobs:
         with:
             github_token: ${{ secrets.GITHUB_TOKEN }} 
             publish_dir: ./allure-report
-            publish_branch: gh-pages
+            publish_branch: allure-report
             keep_files: false
             # open Allure-Report via this url: https://Jeffrey-Jongkees.github.io/Salesforce/
