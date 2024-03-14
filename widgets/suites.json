@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"9f52d9edc41d5ea7e13b00d14e19d4e3","name":"Testing the accounts functionality","statistic":{"failed":0,"broken":2,"skipped":0,"passed":0,"unknown":0,"total":2}},{"uid":"e38b3f7e04a6c999b7797f0a68fc9753","name":"Login Salesforce","statistic":{"failed":0,"broken":0,"skipped":0,"passed":8,"unknown":0,"total":8}}]}
